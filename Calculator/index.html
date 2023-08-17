@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="code.jquery.com_jquery-3.7.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.calculator {
+    width: 330px;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+button {
+    width: 75px;
+    height: 75px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    margin: 5px 2px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+button:hover {
+    background-color: #00FF00;
+    transition: transform 5s;
+}
+
+#active {
+    background-color: #00FF00;
+}
+
+.clear,
+.back {
+    width: 157px;
+    height: 60px;
+    border-radius: 20px;
+}
+.result {
+    width: 320px;
+    height: 100px;
+    margin: 2px;
+    background: #00FF00;
+    text-align: center;
+    padding: 2px;
+    border-radius: 10px;
+    box-shadow: none;
+    border: none;
+    font-weight: bold;
+    font-family: tahoma;
+    margin-bottom: 10px;
+    font-size: 35px;
+}
+button i{
+    font-size: 30px;
+}
+</style>
+
+<body>
+    <div class="calculator">
+        <input type="text" class="result" value="" readonly>
+        <div>
+            <button type="button" class="clear">AC</button>
+            <button type="button" class="back">
+                <i class="fa-sharp fa-regular fa-circle-xmark" style="color: #000000;"></i>
+            </button>
+        </div>
+        <div>
+            <button type="button" class="calc-btn">7</button>
+            <button type="button" class="calc-btn">8</button>
+            <button type="button" class="calc-btn">9</button>
+            <button type="button" class="calc-btn">X</button>
+        </div>
+        <div>
+            <button type="button" class="calc-btn">4</button>
+            <button type="button" class="calc-btn">5</button>
+            <button type="button" class="calc-btn">6</button>
+            <button type="button" class="calc-btn">-</button>
+        </div>
+        <div>
+            <button type="button" class="calc-btn">1</button>
+            <button type="button" class="calc-btn">2</button>
+            <button type="button" class="calc-btn">3</button>
+            <button type="button" class="calc-btn">+</button>
+        </div>
+        <div>
+            <button type="button" class="calc-btn">0</button>
+            <button type="button" class="calc-btn">.</button>
+            <button type="button" class="calc-btn">/</button>
+            <button type="button" class="equal" id="active">=</button>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('.calc-btn').on('click', function () {
+                $('.result').val($('.result').val() + $(this).html());
+            })
+            $('.equal').on('click', function () {
+                exp = $('.result').val();
+                if (exp.includes('X')) {
+                    exp = exp.replace('X', "*");
+                }
+                $('.result').val(eval(exp));
+            })
+            $('.clear').on('click', function () {
+                $('.result').val('');
+            })
+            $('.back').on('click', function () {
+                value = $('.result').val();
+                $('.result').val(value.substring(0, value.length - 1));
+
+            })
+
+        });
+    </script>
+</body>
+
+</html>
